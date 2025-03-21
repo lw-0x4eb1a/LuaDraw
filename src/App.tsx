@@ -130,6 +130,11 @@ export default function App() {
       }, 100)
     }, refresh()[0])
   })
+
+  createEffect(()=> {
+    // @ts-ignore
+    window.editorMode = mode()
+  })
   
   // on cpu_script
   let cTimer = -1

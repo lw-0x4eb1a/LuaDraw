@@ -37,8 +37,8 @@ export default function Editor(props: EditorProps) {
                     position.column
                 )
             }));
-            // api
-            if (props.type === 'cpu')  {
+            // @ts-ignore
+            if (window.editorMode === 'cpu')  {
               suggestions.push({
                 label: 'set_colour_at_position',
                 kind: monaco.languages.CompletionItemKind.Function,
