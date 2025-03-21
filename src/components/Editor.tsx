@@ -1,4 +1,4 @@
-import { MonacoEditor } from "solid-monaco";
+import { MonacoEditor } from "solid-monaco"
 
 type EditorProps = {
   type: "cpu" | "gpu",
