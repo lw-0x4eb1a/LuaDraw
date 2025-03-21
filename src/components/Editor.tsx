@@ -20,6 +20,10 @@ export default function Editor(props: EditorProps) {
       }}
     onMount={(monaco, _editor)=> {
       monaco.editor.setTheme('vs-dark')
+      // @ts-ignore
+      if (window.editorInitFlag) return
+      // @ts-ignore
+      window.editorInitFlag = true
       monaco.languages.registerCompletionItemProvider('lua', {
         provideCompletionItems: (_model, position) => {
             const globals = [
@@ -83,7 +87,6 @@ export default function Editor(props: EditorProps) {
         },
         triggerCharacters: ['a-z'] // 根据需要触发
       });
-      ////
     }}/>
   )
 }
