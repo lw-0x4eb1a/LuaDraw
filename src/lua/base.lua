@@ -77,3 +77,7 @@ function get_image_bytes()
     end
     return array
 end
+
+function math.pow(a, b)
+    return a ^ b
+end
