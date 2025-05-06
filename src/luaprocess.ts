@@ -27,24 +27,11 @@ self.onmessage = (e)=> {
     exec(render_gpu)
   }
 
-  interface LuaResult {
-  log: string;
-  img: number[];
-  pixel_log: Record<string, {
-    color: [number, number, number];
-    operations: string[];
-  }>;
-}
-
-const result = exec(`return {
-  log = get_lua_log(),
-  img = get_image_bytes(),
-  pixel_log = select(2, pcall(get_pixel_log))
-}`) as LuaResult;
-
-const buffer = new Uint8Array(result.img).buffer;
-  
+  const log = exec("return get_lua_log()") as string
+  const img = exec("return get_image_bytes()") as Array<number>
+  const buffer = new Uint8Array(img).buffer
+  const pixel_log = exec("return select(2, pcall(get_pixel_log))") as Map<string, string>
+    
   // @ts-ignore
   self.postMessage({ log, img: buffer, pixel_log }, [buffer])
-
 }
